@@ -62,18 +62,31 @@ submit_button.addEventListener("click", () => {
   ////////CALULATES YEARS///////
   total_years = Math.floor(total_days / 365);
 
+  let output_text_months = 12;
+  let output_text_days;
+
   ////CALCULATES DAYS
+
+  //////////////////
   if (input_month < current_month && input_day > current_day) {
-    output_day.textContent = `${months[input_month] - input_day + current_day}`;
-  } else if (input_month > current_month && input_day > current_day) {
+    output_text_days = months[input_month] - input_day + current_day;
+    output_text_months = current_month - input_month - 1;
+    ////strange on febuary
+    /////
+  } else if (input_month <= current_month && input_day < current_day) {
+    output_text_months = current_month - input_month;
+    output_text_days = current_day - input_day;
+    //////
+  } else if (input_month >= current_month && input_day > current_day) {
     total_years - 1;
     console.log("works");
-    output_day.textContent = `${months[input_month] - input_day + current_day}`;
-  } else if (input_month < current_month && input_day < current_day) {
-    output_day.textContent = `${current_day - input_day}`;
-  } else if (input_month > current_month && input_day < current_day) {
+    output_text_days = months[input_month] - input_day + current_day;
+    output_text_months -= input_month - current_month + 1;
+    ///////////
+  } else if (input_month >= current_month && input_day < current_day) {
     total_years - 1;
-    output_day.textContent = `${current_day - input_day}`;
+    output_text_days = current_day - input_day;
+    output_text_months -= input_month - current_month;
   }
   // total_days -= total_years * 365;
   // console.log(total_days);
@@ -93,7 +106,7 @@ submit_button.addEventListener("click", () => {
 
   // output_year.textContent = `${Math.floor(total_days * 0.0027379)} years`;
 
-  output_month.textContent = `${total_months} months`;
-  // output_day.textContent = `${total_days} days`;
+  output_month.textContent = `${output_text_months} months`;
+  output_day.textContent = `${output_text_days} days`;
   output_year.textContent = `${total_years} years`;
 });
