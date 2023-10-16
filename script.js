@@ -1,4 +1,4 @@
-let output_day = document.querySelector(".total_days");
+let output_day = document.querySelector(".days");
 let output_month = document.querySelector(".months");
 let output_year = document.querySelector(".years");
 
@@ -21,6 +21,9 @@ submit_button.addEventListener("click", () => {
   let leap_years = 0;
 
   let sliced_days;
+
+  let total_years = 0;
+  let total_months = 0;
 
   //////TAKES BIRTH YEAR AND TURNS INTO DAYS THEN ADDS TO TOTAL_DAYS
   // 1. takes month person was born then takes that month and the rest of the months in that year //
@@ -56,4 +59,41 @@ submit_button.addEventListener("click", () => {
   total_days += leap_years;
 
   console.log(total_days);
+  ////////CALULATES YEARS///////
+  total_years = Math.floor(total_days / 365);
+
+  ////CALCULATES DAYS
+  if (input_month < current_month && input_day > current_day) {
+    output_day.textContent = `${months[input_month] - input_day + current_day}`;
+  } else if (input_month > current_month && input_day > current_day) {
+    total_years - 1;
+    console.log("works");
+    output_day.textContent = `${months[input_month] - input_day + current_day}`;
+  } else if (input_month < current_month && input_day < current_day) {
+    output_day.textContent = `${current_day - input_day}`;
+  } else if (input_month > current_month && input_day < current_day) {
+    total_years - 1;
+    output_day.textContent = `${current_day - input_day}`;
+  }
+  // total_days -= total_years * 365;
+  // console.log(total_days);
+
+  // total_months = Math.floor(total_days * 0.032855);
+
+  // total_days -= Math.floor(total_months / 0.032855);
+  // console.log(total_days);
+
+  // total_years = Math.floor(total_days * 0.0027379);
+  // total_days -= total_years * 365;
+
+  // total_months = Math.floor((total_days % 365) / 30.417);
+  // total_days = Math.floor(total_months * 30.417);
+
+  // console.log(total_years, total_months, total_days);
+
+  // output_year.textContent = `${Math.floor(total_days * 0.0027379)} years`;
+
+  output_month.textContent = `${total_months} months`;
+  // output_day.textContent = `${total_days} days`;
+  output_year.textContent = `${total_years} years`;
 });
