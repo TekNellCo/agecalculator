@@ -1,6 +1,7 @@
 let output_day = document.querySelector(".days");
 let output_month = document.querySelector(".months");
 let output_year = document.querySelector(".years");
+let output_total_days = document.querySelector(".total_days");
 
 const months = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
@@ -21,9 +22,6 @@ submit_button.addEventListener("click", () => {
   let leap_years = 0;
 
   let sliced_days;
-
-  let total_years = 0;
-  let total_months = 0;
 
   //////TAKES BIRTH YEAR AND TURNS INTO DAYS THEN ADDS TO TOTAL_DAYS
   // 1. takes month person was born then takes that month and the rest of the months in that year //
@@ -58,55 +56,33 @@ submit_button.addEventListener("click", () => {
   //2. adds leap years to total total_days
   total_days += leap_years;
 
-  console.log(total_days);
-  ////////CALULATES YEARS///////
-  total_years = Math.floor(total_days / 365);
-
   let output_text_months = 12;
   let output_text_days;
+  let output_text_years = current_year - input_year;
 
-  ////CALCULATES DAYS
-
-  //////////////////
+  ////CALCULATES DAYS/MONTHS/YEARS
   if (input_month < current_month && input_day > current_day) {
     output_text_days = months[input_month] - input_day + current_day;
     output_text_months = current_month - input_month - 1;
-    ////strange on febuary
-    /////
+    ////adds 2 days to febuary
+    if (input_month == 2) {
+      output_text_days += 2;
+      console.log("febuary");
+    }
   } else if (input_month <= current_month && input_day < current_day) {
     output_text_months = current_month - input_month;
     output_text_days = current_day - input_day;
-    //////
   } else if (input_month >= current_month && input_day > current_day) {
-    total_years - 1;
-    console.log("works");
+    output_text_years -= 1;
     output_text_days = months[input_month] - input_day + current_day;
     output_text_months -= input_month - current_month + 1;
-    ///////////
   } else if (input_month >= current_month && input_day < current_day) {
-    total_years - 1;
+    output_text_years -= 1;
     output_text_days = current_day - input_day;
     output_text_months -= input_month - current_month;
   }
-  // total_days -= total_years * 365;
-  // console.log(total_days);
-
-  // total_months = Math.floor(total_days * 0.032855);
-
-  // total_days -= Math.floor(total_months / 0.032855);
-  // console.log(total_days);
-
-  // total_years = Math.floor(total_days * 0.0027379);
-  // total_days -= total_years * 365;
-
-  // total_months = Math.floor((total_days % 365) / 30.417);
-  // total_days = Math.floor(total_months * 30.417);
-
-  // console.log(total_years, total_months, total_days);
-
-  // output_year.textContent = `${Math.floor(total_days * 0.0027379)} years`;
-
   output_month.textContent = `${output_text_months} months`;
   output_day.textContent = `${output_text_days} days`;
-  output_year.textContent = `${total_years} years`;
+  output_year.textContent = `${output_text_years} years`;
+  output_total_days.textContent = `${total_days} total days`;
 });
