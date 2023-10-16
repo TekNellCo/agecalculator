@@ -4,17 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Age Calculator</title>
-
+    <script defer src="script.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="day_container">
       <label for="day">Day</label>
-      <input id="day" type="number" />
+      <input required id="day" type="number" />
     </div>
     <div class="month_container">
       <label for="month">Month</label>
-      <input id="month" type="number" />
+      <input required id="month" type="number" />
     </div>
     <div class="year_container">
       <label for="year">Year</label>
@@ -26,7 +26,5 @@
       <p class="months"><span class="span">--</span> months</p>
       <p class="days"><span class="span">--</span> days</p>
     </div>
-
-    <script src="script.js"></script>
   </body>
 </html>
