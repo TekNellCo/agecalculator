@@ -6,27 +6,41 @@
     <title>Age Calculator</title>
     <script defer src="script.js"></script>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div class="month_container">
-      <label for="month">Month</label>
-      <input required id="month" type="number" value="5" />
-    </div>
-    <div class="day_container">
-      <label for="day">Day</label>
-      <input required id="day" type="number" value="20" />
+    <div class="error_container">
+      <p class="error_message"></p>
     </div>
 
-    <div class="year_container">
-      <label for="year">Year</label>
-      <input id="year" type="number" value="1989" />
+    <div class="whole_container">
+      <div class="input_container">
+        <div class="month_container">
+          <label for="month"><span class="input_headers">Month</span></label>
+          <input required id="month" type="number" placeholder="MM" />
+        </div>
+        <div class="day_container">
+          <label for="day"><span class="input_headers">Day</span></label>
+          <input required id="day" type="number" placeholder="DD" />
+        </div>
+        <div class="year_container">
+          <label for="year"><span class="input_headers">Year</span></label>
+          <input id="year" type="number" placeholder="YYYY" />
+        </div>
+      </div>
+      <span class="input_headers"></span>
 
       <button type="submit" class="submit">+</button>
 
-      <p class="years"><span class="span">--</span> years</p>
-      <p class="months"><span class="span">--</span> months</p>
-      <p class="days"><span class="span">--</span> days</p>
-      <p class="total_days"><span class="span">--</span>total days</p>
+      <p class="years"><span class="blank_output">--</span> years</p>
+      <p class="months"><span class="blank_output">--</span> months</p>
+      <p class="days"><span class="blank_output">--</span> days</p>
+      <p class="total_days"><span class="blank_output">--</span>total days</p>
     </div>
   </body>
 </html>
