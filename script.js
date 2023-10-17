@@ -6,6 +6,10 @@ let error_message = document.querySelector(".error_message");
 
 const months = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
+const input_container_month = document.getElementById("month");
+const input_container_year = document.getElementById("year");
+const input_container_day = document.getElementById("day");
+
 const submit_button = document.querySelector(".submit");
 
 let current_day = new Date().getDate();
@@ -25,19 +29,27 @@ submit_button.addEventListener("click", (e) => {
   let sliced_days;
 
   if (input_year < 1000 || input_year > current_year || input_year == null) {
-    error_message.textContent = "Invalid month input";
+    error_message.textContent = "Invalid year input";
     e.preventDefault();
+    input_container_year.classList.toggle("error");
   } else if (
     input_day > months[input_month] ||
     input_day < 1 ||
     input_day == null
   ) {
+    input_container_day.classList.toggle("error");
     error_message.textContent = "Invalid day input";
     e.preventDefault();
   } else if (input_month > 12 || input_month < 1 || input_month == null) {
-    error_message.textContent = "Invalid day input";
+    error_message.textContent = "Invalid month input";
+    input_container_month.classList.toggle("error");
     e.preventDefault();
   } else {
+    const headers = document.querySelectorAll(".input_error");
+    headers.forEach((e) => {
+      e.classList.remove("error");
+    });
+
     //////TAKES BIRTH YEAR AND TURNS INTO DAYS THEN ADDS TO TOTAL_DAYS
     // 1. takes month person was born then takes that month and the rest of the months in that year //
     sliced_days = months.slice(input_month);
@@ -96,9 +108,10 @@ submit_button.addEventListener("click", (e) => {
       output_text_days = current_day - input_day;
       output_text_months -= input_month - current_month;
     }
-    output_month.textContent = `${output_text_months} months`;
-    output_day.textContent = `${output_text_days} days`;
-    output_year.textContent = `${output_text_years} years`;
-    output_total_days.textContent = `${total_days} total days`;
+    output_month.textContent = `${output_text_months} `;
+    output_day.textContent = `${output_text_days} `;
+    output_year.textContent = `${output_text_years} `;
+
+    // output_total_days.textContent = `${total_days} total days`;
   }
 });

@@ -17,15 +17,16 @@
   display: flex;
   flex-direction: column;
   border-radius: 1rem 1rem 8rem 1rem;
-  padding: 0rem 2rem;
+  padding: 0rem 2.5rem 2.5rem 2.5rem;
 }
 .input_container {
-  display: flex;
-  width: 30rem;
+  position: relative;
 
+  display: flex;
+  width: 32rem;
+  position: relative;
   align-items: center;
   height: 35%;
-  padding-bottom: rem;
   gap: 2rem;
   padding-right: 7rem;
   border-bottom: solid hsl(0, 0%, 86%);
@@ -52,11 +53,37 @@ input {
   height: 3rem;
 }
 .submit {
-  transform: translate(30rem, -1.9rem);
+  position: absolute;
+  transform: translate(30.1rem, 6rem);
   border: none;
   color: white;
   background-color: hsl(259, 100%, 65%);
   width: 3.8rem;
   height: 3.8rem;
   border-radius: 100%;
+}
+.submit:active {
+  background-color: black;
+}
+.output_box {
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+  line-height: 4rem;
+  padding-top: 2rem;
+
+  font-style: italic;
+  font-size: 4.3rem;
+  height: 65%;
+  font-weight: 600;
+
+  font-family: "Poppins", sans-serif;
+}
+.blank_output {
+  /* letter-spacing: 0.77rem; */
+  color: hsl(259, 100%, 65%);
+}
+.error {
+  display: hidden;
+  border: solid red;
 }
